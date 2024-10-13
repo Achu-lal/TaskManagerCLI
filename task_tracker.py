@@ -1,6 +1,7 @@
 import json
 import os
 from task import Task
+import argparse
 
 class TaskManager:
     def __init__(self,file_name = 'task.json'):
@@ -21,12 +22,26 @@ class TaskManager:
             json.dump(self.task,file,indent=4) 
 
     def add_task(self,description):
-        task_id = len(self.task) + 1
-        new_task = Task(task_id,description)
-        self.task.append(new_task.to_dict())
-        self.save_tasks()
-
+        try:
+            task_id = len(self.task) + 1  
+            new_task = Task(task_id, description)
+            self.task.append(new_task.to_dict()) 
+            self.save_tasks()   
+            print(f"Task '{description}' added with ID: {task_id}")
+        except Exception as e:
+            print(f"Error adding task: {e}")
 
 if __name__ == '__main__':
-    manager = TaskManager()
-    manager.add_task("Finish the task tracker project 2")
+    parser = argparse.ArgumentParser(description="Task Manager CLI")
+    parser.add_argument('command',choices=['add'],help='Command to execute')
+    parser.add_argument('--description',type=str, help='description of the task')
+
+    args = parser.parse_args()
+
+    task_manager = TaskManager()
+
+    if args.command == 'add':
+        if args.description:
+             task_manager.add_task(args.description)
+        else:
+            print("Error: Please provide a task description using --description.")
