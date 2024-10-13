@@ -1,1 +1,16 @@
-[]
+[
+    {
+        "id": 1,
+        "description": "Finish the task tracker project",
+        "status": "todo",
+        "createdAt": "2024-10-13T13:03:29.021578",
+        "updatedAt": "2024-10-13T13:03:29.021578"
+    },
+    {
+        "id": 2,
+        "description": "Finish the task tracker project 2",
+        "status": "todo",
+        "createdAt": "2024-10-13T13:07:06.357273",
+        "updatedAt": "2024-10-13T13:07:06.357273"
+    }
+]
